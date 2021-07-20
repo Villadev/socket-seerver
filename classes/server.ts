@@ -37,7 +37,12 @@ export default class Server {
         console.log('Listen connections');
 
         this.io.on('connection', client => {
-           console.log('New Client');
+
+            //Connect client
+            socket.connectClient(client);
+
+            // Config user
+            socket.configUser(client);
 
            // Messages
             socket.message(client, this.io);
@@ -45,6 +50,7 @@ export default class Server {
            //Desconectar
             socket.disconnect(client);
         });
+
     }
 
     public start(callback: any) {
